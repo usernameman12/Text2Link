@@ -53,14 +53,9 @@
 
         #output {
             color: #2b6cb0;
-            text-decoration: underline;
-            cursor: pointer;
             font-size: 18px;
             margin-top: 20px;
-        }
-
-        #output:hover {
-            color: #2c5282;
+            white-space: pre-wrap; /* Ensures new lines display properly */
         }
 
         .container {
@@ -84,27 +79,19 @@
         <br><br>
         <button onclick="createRedirect()">Create</button>
         <br><br>
-        <div id="output" onclick="redirect()"></div>
+        <div id="output"></div>
     </div>
 
     <script>
-        let redirectUrl = "#";
-
         function createRedirect() {
             const text = document.getElementById('text').value;
             const link = document.getElementById('link').value;
 
             if (text && link) {
-                document.getElementById('output').textContent = text;
-                redirectUrl = link;
+                const formattedOutput = `discord text: ## [${text}](${link})`;
+                document.getElementById('output').textContent = formattedOutput;
             } else {
                 alert('Please enter both text and a valid link.');
-            }
-        }
-
-        function redirect() {
-            if (redirectUrl !== "#") {
-                window.location.href = redirectUrl;
             }
         }
     </script>
